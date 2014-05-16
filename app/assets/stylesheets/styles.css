@@ -1,0 +1,37 @@
+img {
+  width: 400px;
+}
+
+.caption_input input{
+  width: 400px;
+  height: 50px;
+}
+
+.caption_input {
+  border: solid black 1px;
+  width: 405px;
+  padding: 2px;
+  margin-bottom: 20px;
+}
+
+.caption {
+  border: solid black 1px;
+  width: 400px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.caption_author {
+  border: solid black 1px;
+  display: inline-block;
+  float: right;
+}
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }

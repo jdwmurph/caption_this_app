@@ -1,0 +1,31 @@
+<h1>Caption this!</h1>
+
+<img src="http://1.bp.blogspot.com/-SHX9Fwu46xQ/UIkyg-UyWCI/AAAAAAAAAFQ/W7ESDg8qHoU/s1600/Disney_Cartoon_hd_wallpapers.jpg">
+
+<div class = "caption_input">
+  <form action="/users/captions" method="post" >
+    <input type="text" name="caption[message]" placeholder="Hey <%= @current_user.name%>, input your caption here!">
+    <%= token_tag %>
+    <p>
+    <button type="submit">Pen it!</button>
+    </p>
+  </form>
+</div>
+
+<% @captions.each do |caption| %>
+  <div class="caption clearfix">
+    <%= caption.message %> </br> </br>  By <%= caption.user.name%>
+    <div class="caption_author">
+      Upvotes:
+      <form action="/users/<%= caption.user_id %>/captions/<%= caption.id %>/upvote" method="post">
+        <%= token_tag %>
+        <button type="submit"><%= caption.get_upvotes.size %></button>
+      </form>
+      Downvotes:
+      <form action="/users/<%= caption.user_id %>/captions/<%= caption.id %>/downvote" method="post">
+        <%= token_tag %>
+        <button type="submit"><%= caption.get_downvotes.size %></button>
+      </form>
+    </div>
+  </div>
+<% end %>
