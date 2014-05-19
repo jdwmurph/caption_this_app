@@ -12,9 +12,10 @@ john.images << new_image
 john.save
 new_image.save
 new_caption = Caption.create(message: 'Where did all your honey go, Pooh?')
-new_image << new_caption
+new_image.captions << new_caption
 new_image.save
-john << new_caption
+new_caption.save
+john.captions << new_caption
 new_caption.liked_by john
 john.save
 new_caption.save
