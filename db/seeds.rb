@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(name: 'John')
+john = User.create(name: 'John')
 new_image = Image.create(image_url: 'http://1.bp.blogspot.com/-SHX9Fwu46xQ/UIkyg-UyWCI/AAAAAAAAAFQ/W7ESDg8qHoU/s1600/Disney_Cartoon_hd_wallpapers.jpg', published: true)
-User.first.images << new_image
+john.images << new_image
+new_caption = Caption.create(message: 'Where did all your honey go, Pooh?', user_id: john.id, image_id: new_image.id)
+new_caption.liked_by john
