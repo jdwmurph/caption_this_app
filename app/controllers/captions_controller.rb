@@ -24,6 +24,11 @@ class CaptionsController < ApplicationController
     redirect_to image_path(caption.image)
   end
 
+  def destroy
+    Caption.delete(params[:id])
+    redirect_to user_path(@current_user)
+  end
+
   private
   def caption_params
     params.require(:caption).permit(:message, :user_id, :image_id)

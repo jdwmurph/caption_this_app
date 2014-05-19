@@ -1,0 +1,9 @@
+Create a new user, here:
+
+<form action="/users" method="post">
+  <%= token_tag %>
+  <input type="text" name="user[name]" placeholder="Name">
+  <input type="text" name="user[password]" placeholder="Password">
+  <input type="text" name="user[password_confirmation]" placeholder="Password Confirmation">
+  <input type="submit">
+</form>

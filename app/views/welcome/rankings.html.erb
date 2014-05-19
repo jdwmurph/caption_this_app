@@ -1,0 +1,8 @@
+
+<h1>Top Ten Users by Total Caption Score</h1>
+<% @first_ten_users.each do |user| %>
+  <p>Name: <%=user.name%> Score: <%=user_caption_score(user)%></p>
+<% end %>
+
+<h1>Top Caption by Score</h1>
+<h1>Most Upvoted by Score</h1>

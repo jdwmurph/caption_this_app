@@ -1,35 +1,55 @@
-<h1>Caption this!</h1>
-<h5>Or click <a href="/images/<%= @next_image_id %>">here</a> to go to the next image.</h5>
-<img src="<%= @image.image_url %>">
+<div class="image_all">
+  <h1>Caption this!</h1>
+  <h5>Or click <a href="/images/<%= @next_image_id %>">here</a> to go to the next image.</h5>
+  <img src="<%= @image.image_url %>">
 
-<div class = "caption_input">
-  <form action="/captions" method="post" >
-    <input type="hidden" name="caption[user_id]" value="<%= @current_user.id %>">
-    <input type="hidden" name="caption[image_id]" value="<%= @image.id %>">
-    <input type="text" name="caption[message]" placeholder="Hey <%= @current_user.name%>, input your caption here!">
-    <%= token_tag %>
-    <p>
-    <button type="submit">Pen it!</button>
-    </p>
-  </form>
-</div>
-
-
-
-<% @captions.each do |caption| %>
-  <div class="caption clearfix">
-    <%= caption.message %> </br> </br>  By <%= caption.user.name%>
-    <div class="caption_author">
-      Upvotes:
-      <form action="/users/<%= @current_user.id %>/captions/<%= caption.id %>/upvote" method="post">
-        <%= token_tag %>
-        <button type="submit"><%= caption.get_upvotes.size %></button>
-      </form>
-      Downvotes:
-      <form action="/users/<%= @current_user.id %>/captions/<%= caption.id %>/downvote" method="post">
-        <%= token_tag %>
-        <button type="submit"><%= caption.get_downvotes.size %></button>
-      </form>
-    </div>
+  <% if @current_user && !@current_user.captions.find_by(image_id: @image.id)%>
+  <div class = "caption_input center">
+    <form action="/captions" method="post" >
+      <input type="hidden" name="caption[user_id]" value="<%=   @current_user.id %>">
+      <input type="hidden" name="caption[image_id]" value="<%= @image.id %>">
+      <input type="text" name="caption[message]" placeholder=  "Hey <%= @current_user.name%>, input your caption here!">
+      <%= token_tag %>
+      <p>
+      <button type="submit">Pen it!</button>
+      </p>
+    </form>
   </div>
-<% end %>
+
+  <% elsif %>
+  <h5>You have already created a caption for this picture. Delete it from your profile... or admire it!</h5>
+  <% else %>
+
+  <h3>Login to create a new caption and to vote on captions</h3>
+
+  <% end %>
+
+
+
+  <% @captions.each do |caption| %>
+    <div class="caption clearfix center">
+      <%= caption.message %> </br> </br>  By <%= caption.user  .name%>
+      <% if @current_user%>
+      <div class="caption_author">
+        Upvotes:
+        <form action="/users/<%= @current_user.id %>  /captions/<%= caption.id %>/upvote" method="post">
+          <%= token_tag %>
+          <button type="submit"><%= caption.get_upvotes.size   %></button>
+        </form>
+        Downvotes:
+        <form action="/users/<%= @current_user.id %>  /captions/<%= caption.id %>/downvote" method="post">
+          <%= token_tag %>
+          <button type="submit"><%= caption.get_downvotes.  size %></button>
+        </form>
+
+        <% else %>
+            <div class="caption_author">
+              Upvotes:
+              <%= caption.get_upvotes.size %>
+              Downvotes:
+              <%= caption.get_downvotes.size %>
+            </div>
+        <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,5 +1,10 @@
 body {
   margin: 0;
+  color: black;
+}
+
+img {
+  border: solid black 1px;
 }
 
 .welcome {
@@ -13,14 +18,12 @@ body {
 
 nav {
   background-color: black;
-  color: white;
   padding: 10px;
 }
 
 nav h1, h3 {
   margin: 0;
   padding: 0;
-  color: white;
 }
 
 nav h3 {
@@ -29,6 +32,7 @@ nav h3 {
 
 nav a {
   text-decoration: none;
+  color: white;
 }
 
 nav a:visited {
@@ -40,6 +44,12 @@ nav a:visited {
 }
 .profile_link {
   float: right;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.profile_link1 {
+  border-left: solid white 1px;
 }
 
 img {
@@ -47,7 +57,6 @@ img {
 }
 
 .welcome_image {
-
 }
 
 .welcome_button {
@@ -57,6 +66,15 @@ img {
 .welcome_caption {
   clear: both;
 }
+
+.image_all {
+  text-align: center;
+}
+
+.center {
+  margin: 0 auto;
+}
+
 
 .caption_input input{
   width: 400px;
@@ -105,3 +123,4 @@ img {
      clear: both;
      height: 0;
      }
+

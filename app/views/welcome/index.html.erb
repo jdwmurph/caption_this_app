@@ -4,12 +4,10 @@
 
     <img class="welcome_image" src="<%= @image.image_url %>">
 
-    <form action="/images/<%= @image.id %>" method="get">
-      <button class="welcome_button" type="submit">I think so!</button>
-    </form>
-
-
     <h3 class="welcome_caption">"<%= @caption_top.message %>"</h3>
-
+    </br>
+    <form action="/images/<%= @image.id %>" method="get">
+      <button class="" type="submit">Check out other images and captions!</button>
+    </form>
 </div>
 

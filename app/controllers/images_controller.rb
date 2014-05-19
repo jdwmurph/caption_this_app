@@ -37,15 +37,14 @@ class ImagesController < ApplicationController
   def last
   end
 
-  def publish
+  def publisher
     image = Image.find(params[:id])
-    image.update(published: true)
-
-    redirect_to image_path(image)
+    image.update(image_params)
+    redirect_to user_path(image.user)
   end
 
   private
   def image_params
-    params.require(:image).permit(:image_url)
+    params.require(:image).permit(:image_url, :published)
   end
 end

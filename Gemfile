@@ -29,7 +29,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'rails_12factor'
 gem 'acts_as_votable', '~> 0.9.0'
 gem 'httparty'
-
+gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   gem 'spring'
   gem 'pry'

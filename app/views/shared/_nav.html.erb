@@ -1,4 +1,37 @@
 <nav class="clearfix">
+
   <div class="home_link"><a href="/"><h1>CAPTION</h1></a></div>
-  <div class="profile_link"><a href="/users/<%= @current_user.id%>"><h3>Profile</h3></a></div>
+  <% if @current_user %>
+
+    <div class="profile_link profile_link1">
+      <a href="/sessions/end">
+        <h3>Sign Out</h3>
+      </a>
+    </div>
+
+
+    <div class="profile_link profile_link1">
+      <a href="/users/<%= @current_user.id%>">
+        <h3>Profile</h3>
+      </a>
+    </div>
+
+  <% else %>
+    <div class="profile_link profile_link1">
+      <a href="/sessions/new"><h3>Login</h3></a>
+    </div>
+  <% end %>
+
+  <div class="profile_link profile_link1">
+    <a href="/rules">
+      <h3>Rules</h3>
+    </a>
+  </div>
+
+  <div class="profile_link">
+    <a href="/rankings">
+      <h3>Rankings</h3>
+    </a>
+  </div>
+
 </nav>
