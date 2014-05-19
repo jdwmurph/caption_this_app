@@ -1,5 +1,60 @@
+body {
+  margin: 0;
+}
+
+.welcome {
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+
+/*nav bar styling */
+
+nav {
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+
+nav h1, h3 {
+  margin: 0;
+  padding: 0;
+}
+
+nav h3 {
+  margin-top: 3px;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+nav a:visited {
+  color: white;
+}
+
+.home_link {
+  float: left;
+}
+.profile_link {
+  float: right;
+}
+
 img {
   width: 400px;
+}
+
+.welcome_image {
+
+}
+
+.welcome_button {
+  float: right;
+}
+
+.welcome_caption {
+  clear: both;
 }
 
 .caption_input input{
@@ -25,6 +80,20 @@ img {
   border: solid black 1px;
   display: inline-block;
   float: right;
+}
+
+.image_box {
+  border: solid black 1px;
+  width: 50%;
+}
+
+.caption_box {
+  border: solid black 1px;
+  width: 50%;
+}
+
+.caption_box img {
+  width: 100px;
 }
 
 .clearfix:after {

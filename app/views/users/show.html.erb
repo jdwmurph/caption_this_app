@@ -1,0 +1,40 @@
+<h1><%= @current_user.name %>'s Profile</h1>
+</br>
+Images:
+
+</br>
+
+<% @current_user.images.each do |image| %>
+  <div class="image_box">
+    <img src="<%= image.image_url %>">
+  Published? <%= image.published %>
+  <% if !image.published %>
+    <form action="/images/<%= image.id %>/update" method="post">
+      <input type="hidden" name="_method" value="put">
+      <input type="hidden" name="image[published]" value="true">
+      <%= token_tag %>
+      <button type="submit">Publish</button>
+    </form>
+  <% end %>
+  </br>
+    Number of captions: <%= image.captions.count %>
+  </div>
+<% end %>
+
+
+Create a new image:
+<form action="/images/new" method="get">
+    <button>Select Image</button>
+</form>
+
+Captions:
+</br>
+<% @current_user.captions.each do |caption| %>
+  <div class="caption_box">
+    Image: <img src="<%= caption.image.image_url %>">
+    Message: <%= caption.message %>
+    Upvotes:  <%= caption.get_upvotes.size %>
+    Downvotes:  <%= caption.get_downvotes.size %>
+  </br>
+  </div>
+<% end %>

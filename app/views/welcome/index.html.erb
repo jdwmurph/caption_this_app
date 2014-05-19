@@ -1,31 +1,15 @@
-<h1>Caption this!</h1>
+<div class="welcome">
 
-<img src="http://1.bp.blogspot.com/-SHX9Fwu46xQ/UIkyg-UyWCI/AAAAAAAAAFQ/W7ESDg8qHoU/s1600/Disney_Cartoon_hd_wallpapers.jpg">
+    <h1>Can you write a better caption than this?</h1>
 
-<div class = "caption_input">
-  <form action="/users/captions" method="post" >
-    <input type="text" name="caption[message]" placeholder="Hey <%= @current_user.name%>, input your caption here!">
-    <%= token_tag %>
-    <p>
-    <button type="submit">Pen it!</button>
-    </p>
-  </form>
+    <img class="welcome_image" src="<%= @image.image_url %>">
+
+    <form action="/images/<%= @image.id %>" method="get">
+      <button class="welcome_button" type="submit">I think so!</button>
+    </form>
+
+
+    <h3 class="welcome_caption">"<%= @caption_top.message %>"</h3>
+
 </div>
 
-<% @captions.each do |caption| %>
-  <div class="caption clearfix">
-    <%= caption.message %> </br> </br>  By <%= caption.user.name%>
-    <div class="caption_author">
-      Upvotes:
-      <form action="/users/<%= caption.user_id %>/captions/<%= caption.id %>/upvote" method="post">
-        <%= token_tag %>
-        <button type="submit"><%= caption.get_upvotes.size %></button>
-      </form>
-      Downvotes:
-      <form action="/users/<%= caption.user_id %>/captions/<%= caption.id %>/downvote" method="post">
-        <%= token_tag %>
-        <button type="submit"><%= caption.get_downvotes.size %></button>
-      </form>
-    </div>
-  </div>
-<% end %>

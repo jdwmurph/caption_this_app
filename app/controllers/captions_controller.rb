@@ -3,27 +3,30 @@ class CaptionsController < ApplicationController
   before_action:current_user
 
   def create
-    @current_user.captions << Caption.create(caption_params)
-    redirect_to '/'
+    new_caption = Caption.create(caption_params)
+    @current_user.captions << new_caption
+    @image = Image.find(new_caption.image)
+    @image.captions << new_caption
+    redirect_to image_path(@image)
   end
 
   def upvote
-    caption = Caption.find(params[:caption_id])
-    user = User.find(params[:id])
+    caption = Caption.find(params[:id])
+    user = User.find(params[:user_id])
     caption.liked_by user
-    redirect_to '/'
+    redirect_to image_path(caption.image)
   end
 
   def downvote
-    caption = Caption.find(params[:caption_id])
-    user = User.find(params[:id])
+    caption = Caption.find(params[:id])
+    user = User.find(params[:user_id])
     caption.downvote_from user
-    redirect_to '/'
+    redirect_to image_path(caption.image)
   end
 
   private
   def caption_params
-    params.require(:caption).permit(:message)
+    params.require(:caption).permit(:message, :user_id, :image_id)
   end
 
 end
