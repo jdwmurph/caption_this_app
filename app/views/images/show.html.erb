@@ -16,7 +16,7 @@
     </form>
   </div>
 
-  <% elsif %>
+  <% elsif @current_user && !@current_user.captions.find_by(image_id: @image.id)%>
   <h5>You have already created a caption for this picture. Delete it from your profile... or admire it!</h5>
   <% else %>
 
@@ -41,7 +41,7 @@
           <%= token_tag %>
           <button type="submit"><%= caption.get_downvotes.  size %></button>
         </form>
-
+      </div>
         <% else %>
             <div class="caption_author">
               Upvotes:
