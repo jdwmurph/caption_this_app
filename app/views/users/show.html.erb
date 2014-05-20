@@ -1,5 +1,14 @@
 <h1><%= @current_user.name %>'s Profile</h1>
 </br>
+Total Caption Score: <%= user_caption_score(@current_user) %>
+</br>
+Worldwide Rank: <%= user_caption_rank(@current_user) %> of <%= @user_count %>
+</br>
+Total Image Score: <%= user_image_score(@current_user) %>
+</br>
+Worldwide Rank: <%= user_image_rank(@current_user) %> of <%= @user_count %>
+</br>
+</br>
 
 Images (<%= @published_count %> published):
 
@@ -16,7 +25,15 @@ Images (<%= @published_count %> published):
       <%= token_tag %>
       <button type="submit">Publish</button>
     </form>
+
+    <form action="/images/<%= image.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <%= token_tag %>
+      <button type="submit">Delete</button>
+    </form>
+
   <% end %>
+
   <% if image.published %>
     <form action="/images/<%= image.id %>/update" method="post">
       <input type="hidden" name="_method" value="put">
@@ -28,8 +45,10 @@ Images (<%= @published_count %> published):
       <button type="submit">View</button>
     </form>
   <% end %>
+
   </br>
     Number of captions: <%= image.captions.count %>
+    Image score: <%= image_score(image) %>
   </br>
   </div>
 <% end %>
@@ -45,10 +64,14 @@ Captions:
 <% @current_user.captions.each do |caption| %>
   <div class="caption_box">
     Image: <img src="<%= caption.image.image_url %>">
+    Image published?: <%= caption.image.published %>
     Message: <%= caption.message %>
     Upvotes:  <%= caption.get_upvotes.size %>
     Downvotes:  <%= caption.get_downvotes.size %>
     Score: <%= caption.get_upvotes.size - caption.get_downvotes.size %>
+    <form action="/images/<%= caption.image.id%>" method="get">
+      <button type="submit">View</button>
+    </form>
     <form action="/captions/<%= caption.id%>" method="post">
       <input type="hidden" name="_method" value="delete">
       <%= token_tag %>

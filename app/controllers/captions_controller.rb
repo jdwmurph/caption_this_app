@@ -2,6 +2,7 @@ class CaptionsController < ApplicationController
 
   before_action:current_user
 
+
   def create
     new_caption = Caption.create(caption_params)
     @current_user.captions << new_caption

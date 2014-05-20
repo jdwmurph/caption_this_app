@@ -115,6 +115,12 @@ img {
   width: 100px;
 }
 
+.image_list img{
+  width: 100px;
+  float: left;
+  margin-left: 15px;
+}
+
 .clearfix:after {
      visibility: hidden;
      display: block;

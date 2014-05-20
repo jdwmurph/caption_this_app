@@ -1,8 +1,36 @@
 
 <h1>Top Ten Users by Total Caption Score</h1>
+<h3>(Aggregate number of upvotes minus downvotes for all captions the User created)</h3>
+<p>Total user count: <%= User.all.count %></p>
+<ol>
 <% @first_ten_users.each do |user| %>
-  <p>Name: <%=user.name%> Score: <%=user_caption_score(user)%></p>
+  <li>Name: <%=user.name%> Score: <%=user_caption_score(user)%></li>
 <% end %>
+</ol>
 
-<h1>Top Caption by Score</h1>
-<h1>Most Upvoted by Score</h1>
+<h1>Top Ten Users by Total Image Score</h1>
+<h3>(Aggregate number of upvotes minus downvotes for all images published from the User's account)</h3>
+<p>Total user count: <%= User.all.count %></p>
+<ol>
+<% @first_ten_users_img.each do |user| %>
+  <li>Name: <%=user.name%> Score: <%=user_image_score(user)%></li>
+<% end %>
+</ol>
+
+<h1>Top Ten Captions by Score</h1>
+<h3>(Highest score, calculated by number of upvotes minus downvotes [only on published images])</h3>
+<p>Total Caption Count (for published images): <%= @caption_count %></p>
+<ol>
+<% @top_ten_captions.each do |caption| %>
+  <li>Caption: <a href="/images/<%=caption.image.id%>"><%= caption.message %></a> Author: <%=caption.user.name%> Score: <%=caption_score(caption)%></li>
+<% end %>
+</ol>
+
+<h1>Top Ten Images by Score</h1>
+<h3>(Highest score, calculated by number of upvotes minus downvotes for all captions for the image [only including published images])</h3>
+<p>Total Image Count (published): <%= @image_count %></p>
+<ol>
+<% @top_ten_images.each do |image| %>
+  <li>Image: <a href="/images/<%= image.id %>"><img src="<%= image.image_url %>" style="width: 100px;"></a> Publisher: <%=image.user.name%> Score: <%=image_score(image)%></li>
+<% end %>
+</ol>

@@ -1,6 +1,7 @@
 class ImagesController < ApplicationController
   before_action:current_user
 
+
   def new
     url = 'https://api.instagram.com/v1/media/popular?access_token=1334546166.f59def8.1875f03b73e04642b9461f56999d0e14'
     result = HTTParty.get(url)
@@ -32,6 +33,11 @@ class ImagesController < ApplicationController
     @next_image_id = @image.id + 1
     @captions = @image.captions
     @captions = @captions.sort {|caption_2, caption_1| caption_1.get_upvotes.size - caption_1.get_downvotes.size <=> caption_2.get_upvotes.size - caption_2.get_downvotes.size}
+  end
+
+  def destroy
+    Image.delete(params[:id])
+    redirect_to user_path(@current_user)
   end
 
   def last

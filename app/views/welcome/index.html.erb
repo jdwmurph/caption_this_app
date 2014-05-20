@@ -1,13 +1,47 @@
 <div class="welcome">
+    </br>
+    </br>
 
     <h1>Can you write a better caption than this?</h1>
+
+    </br>
 
     <img class="welcome_image" src="<%= @image.image_url %>">
 
     <h3 class="welcome_caption">"<%= @caption_top.message %>"</h3>
     </br>
-    <form action="/images/<%= @image.id %>" method="get">
-      <button class="" type="submit">Check out other images and captions!</button>
-    </form>
-</div>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
 
+      <h3>Yes? Then check out the rules, rankings, and login above.... or check out other images and captions below!</h3>
+</div>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+<h1>Click to view/pen captions.</h1>
+
+<% @images.each do |image| %>
+  <div class="image_list">
+    <a href="/images/<%= image.id %>">
+      <img src="<%= image.image_url %>">
+    </a>
+  </div>
+<% end %>
