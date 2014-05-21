@@ -6,7 +6,7 @@
 
     </br>
 
-    <img class="welcome_image" src="<%= @image.image_url %>">
+    <a href="/images/<%= @image.id%>"><img class="welcome_image" src="<%= @image.image_url %>"></a>
 
     <h3 class="welcome_caption">"<%= @caption_top.message %>"</h3>
     </br>
@@ -21,23 +21,18 @@
     </br>
     </br>
     </br>
-
-      <h3>Yes? Then check out the rules, rankings, and login above.... or check out other images and captions below!</h3>
+<% if @current_user %>
+    <h3>Yes? Then click on an image to create a caption!</h3>
+<% else %>
+    <h3>Yes? Then check out the rules, rankings, and login above.... or click on an image to check out its captions!</h3>
+<% end %>
 </div>
     </br>
     </br>
     </br>
     </br>
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
-<h1>Click to view/pen captions.</h1>
 
+<div class="image_list_box">
 <% @images.each do |image| %>
   <div class="image_list">
     <a href="/images/<%= image.id %>">
@@ -45,3 +40,7 @@
     </a>
   </div>
 <% end %>
+</div>
+
+
+<div class = "clearfix"><div class="footer"></div></div>

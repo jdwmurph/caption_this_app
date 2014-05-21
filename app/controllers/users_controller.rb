@@ -6,11 +6,16 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = User.new
   end
 
   def create
-    User.create(user_params)
-    redirect_to '/users'
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to log_in_path
+    else
+      render new_user_path
+    end
   end
 
   def show
@@ -68,7 +73,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
 

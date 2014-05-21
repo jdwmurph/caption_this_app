@@ -1,82 +1,110 @@
-<h1><%= @current_user.name %>'s Profile</h1>
-</br>
-Total Caption Score: <%= user_caption_score(@current_user) %>
-</br>
-Worldwide Rank: <%= user_caption_rank(@current_user) %> of <%= @user_count %>
-</br>
-Total Image Score: <%= user_image_score(@current_user) %>
-</br>
-Worldwide Rank: <%= user_image_rank(@current_user) %> of <%= @user_count %>
-</br>
+<h1 class="center_text"><%= @current_user.name %>'s Profile</h1>
+
+<table class="show_table center_text">
+  <thead>
+    <tr>
+      <th>Total Caption Score</th>
+      <th>Total Image Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= user_caption_score(@current_user) %></td>
+      <td><%= user_image_score(@current_user) %></td>
+    </tr>
+    <tr>
+      <td>Worldwide Rank: <%= user_caption_rank(@current_user) %> of <%= @user_count %></td>
+      <td>Worldwide Rank: <%= user_image_rank(@current_user) %> of <%= @user_count %></td>
+    </tr>
+  </tbody>
+</table>
+
+
 </br>
 
-Images (<%= @published_count %> published):
+<h3 class="center_text">Images (<%= @current_user.images.count %> saved, <%= @published_count %> published):</h3>
 
-</br>
-
-<% @current_user.images.each do |image| %>
-  <div class="image_box">
-    <img src="<%= image.image_url %>">
-  Published? <%= image.published %>
-  <% if !image.published && @published_count < 5 %>
-    <form action="/images/<%= image.id %>/update" method="post">
-      <input type="hidden" name="_method" value="put">
-      <input type="hidden" name="image[published]" value="true">
-      <%= token_tag %>
-      <button type="submit">Publish</button>
+  <div class = "center_text">
+    Create a new image:
+    <form action="/images/new" method="get">
+        <button>Find/Save Image</button>
     </form>
-
-    <form action="/images/<%= image.id %>" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <%= token_tag %>
-      <button type="submit">Delete</button>
-    </form>
-
-  <% end %>
-
-  <% if image.published %>
-    <form action="/images/<%= image.id %>/update" method="post">
-      <input type="hidden" name="_method" value="put">
-      <input type="hidden" name="image[published]" value="false">
-      <%= token_tag %>
-      <button type="submit">Unpublish</button>
-    </form>
-    <form action="/images/<%= image.id %>" method="get">
-      <button type="submit">View</button>
-    </form>
-  <% end %>
-
-  </br>
-    Number of captions: <%= image.captions.count %>
-    Image score: <%= image_score(image) %>
-  </br>
   </div>
-<% end %>
+</br>
 
 
-Create a new image:
-<form action="/images/new" method="get">
-    <button>Select Image</button>
-</form>
+  <% @current_user.images.each do |image| %>
+    <div class="image_box center center_text">
+      <img src="<%= image.image_url %>">
+      <p>Published? <%= image.published %></p>
+    <% if !image.published && @published_count < 5 %>
+      <form action="/images/<%= image.id %>/update" method="post">
+        <input type="hidden" name="_method" value="put">
+        <input type="hidden" name="image[published]" value="true">
+        <%= token_tag %>
+        <button type="submit">Publish</button>
+      </form>
 
-Captions:
+  <!--     <form action="/images/<%= image.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <%= token_tag %>
+        <button type="submit">Delete</button>
+      </form> -->
+
+    <% end %>
+
+    <% if image.published %>
+      <form action="/images/<%= image.id %>/update" method="post">
+        <input type="hidden" name="_method" value="put">
+        <input type="hidden" name="image[published]" value="false">
+        <%= token_tag %>
+        <button type="submit">Unpublish</button>
+      </form>
+      <form action="/images/<%= image.id %>" method="get">
+        <button type="submit">View</button>
+      </form>
+    <% end %>
+
+    </br>
+      Number of captions: <%= image.captions.count %>
+      Image score: <%= image_score(image) %>
+    </br>
+    </div>
+  <% end %>
+
+ </br>
+
+<h3 class="center_text">Captions</h3>
+
 </br>
 <% @current_user.captions.each do |caption| %>
-  <div class="caption_box">
-    Image: <img src="<%= caption.image.image_url %>">
-    Image published?: <%= caption.image.published %>
-    Message: <%= caption.message %>
-    Upvotes:  <%= caption.get_upvotes.size %>
-    Downvotes:  <%= caption.get_downvotes.size %>
-    Score: <%= caption.get_upvotes.size - caption.get_downvotes.size %>
-    <form action="/images/<%= caption.image.id%>" method="get">
-      <button type="submit">View</button>
-    </form>
-    <form action="/captions/<%= caption.id%>" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <%= token_tag %>
-      <button type="submit">Delete</button>
-    </form>
-  </br>
+  <div class="caption_box center clearfix">
+
+    <div>
+      <img src="<%= caption.image.image_url %>">
+    </div>
+
+    <div class="caption_des">
+      <p>Caption: "<%= caption.message %>"</p>
+      <p>Image published?: <%= caption.image.published %></p>
+      <p>
+      Upvotes:  <%= caption.get_upvotes.size %>
+      Downvotes:  <%= caption.get_downvotes.size %>
+      Score: <%= caption.get_upvotes.size - caption.get_downvotes.size %>
+      </p>
+    </div>
+
+    <div class="cap_act">
+      <form action="/images/<%= caption.image.id%>" method="  get">
+        <button type="submit">View</button>
+      </form>
+
+      <form action="/captions/<%= caption.id%>" method="post  ">
+        <input type="hidden" name="_method" value="delete">
+        <%= token_tag %>
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+
   </div>
 <% end %>

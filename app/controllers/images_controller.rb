@@ -3,9 +3,14 @@ class ImagesController < ApplicationController
 
 
   def new
-    url = 'https://api.instagram.com/v1/media/popular?access_token=1334546166.f59def8.1875f03b73e04642b9461f56999d0e14'
+
+    url = "https://api.instagram.com/v1/media/popular?access_token=#{ENV.fetch('INSTAGRAM_TOKEN')}"
     result = HTTParty.get(url)
     @image_url = result['data'][1]['images']['standard_resolution']['url']
+
+    # headers = {"Content-Type": "text", "Authorization": "Client-ID <%= ENV.fetch('IMGUR_KEY')%>"}
+    # r = requests.get("https://api.imgur.com/3/gallery/random/random/<%= 1 %>", headers=headers, verify=False)
+    # @imgur_url
   end
 
   def create
@@ -32,7 +37,7 @@ class ImagesController < ApplicationController
     end
     @next_image_id = @image.id + 1
     @captions = @image.captions
-    @captions = @captions.sort {|caption_2, caption_1| caption_1.get_upvotes.size - caption_1.get_downvotes.size <=> caption_2.get_upvotes.size - caption_2.get_downvotes.size}
+    @captions = @captions.sort {|caption_2, caption_1| caption_score(caption_1) <=> caption_score(caption_2)}
   end
 
   def destroy
@@ -47,6 +52,10 @@ class ImagesController < ApplicationController
     image = Image.find(params[:id])
     image.update(image_params)
     redirect_to user_path(image.user)
+  end
+
+  def caption_score(caption)
+    score = caption.get_upvotes.size - caption.get_downvotes.size
   end
 
   private

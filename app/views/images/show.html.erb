@@ -29,26 +29,34 @@
 
   <% @captions.each do |caption| %>
     <div class="caption clearfix center">
-      <%= caption.message %> </br> </br>  By <%= caption.user  .name%>
+      <h3 class="welcome_caption caption_wrap">"<%= caption.message %>"</h3>
+    </br>
+      By <%= caption.user.name%>
       <% if @current_user%>
-      <div class="caption_author">
-        Upvotes:
-        <form action="/users/<%= @current_user.id %>  /captions/<%= caption.id %>/upvote" method="post">
-          <%= token_tag %>
-          <button type="submit"><%= caption.get_upvotes.size   %></button>
+      <div class="caption_vote">
+        <div>
+        Upvotes
+          <form action="/users/<%= @current_user.id %>/captions/<%= caption.id %>/upvote" method="post">
+            <%= token_tag %>
+            <button type="submit"><%= caption.get_upvotes.size%></button>
         </form>
-        Downvotes:
-        <form action="/users/<%= @current_user.id %>  /captions/<%= caption.id %>/downvote" method="post">
-          <%= token_tag %>
-          <button type="submit"><%= caption.get_downvotes.  size %></button>
+        </div>
+        <div>
+        Downvotes
+          <form action="/users/<%= @current_user.id %>/captions/<%= caption.id %>/downvote" method="post">
+            <%= token_tag %>
+            <button type="submit"><%= caption.get_downvotes.size %></button>
         </form>
+        </div>
       </div>
         <% else %>
-            <div class="caption_author">
-              Upvotes:
-              <%= caption.get_upvotes.size %>
-              Downvotes:
-              <%= caption.get_downvotes.size %>
+            <div class="caption_vote">
+              <div>
+                Upvotes <%= caption.get_upvotes.size %>
+              </div>
+              <div>
+                Downvotes <%= caption.get_downvotes.size %>
+              </div>
             </div>
         <% end %>
     </div>
