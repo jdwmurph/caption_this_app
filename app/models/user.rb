@@ -1,5 +1,3 @@
-require '/Users/jdwmurph/code/wdi/projects/caption_this_app/app/validators/email_validator'
-
 class User < ActiveRecord::Base
   has_many :captions
   has_many :images
