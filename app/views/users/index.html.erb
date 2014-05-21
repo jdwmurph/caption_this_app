@@ -1,4 +1,6 @@
-<h1>Users:</h1>
-<% @users.each do |user| %>
-  <p><%= user.name %></p>
-<% end %>
+<div class="login">
+  <h1>Users</h1>
+  <% @users.sort {|x,y| x.name <=> y.name}.each do |user| %>
+    <p><%= user.name %></p>
+  <% end %>
+</div>

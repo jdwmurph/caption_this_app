@@ -26,6 +26,7 @@ class CaptionsController < ApplicationController
 
   def destroy
     Caption.delete(params[:id])
+    binding.pry
     redirect_to user_path(@current_user)
   end
 

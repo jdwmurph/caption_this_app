@@ -1,6 +1,8 @@
 <h1 class="center_text"><%= @current_user.name %>'s Profile</h1>
 
-<table class="show_table center_text">
+<h3 class="center_text">Rankings</h3>
+</br>
+<table class="show_table center_text teal_it">
   <thead>
     <tr>
       <th>Total Caption Score</th>
@@ -21,20 +23,27 @@
 
 
 </br>
+</br>
 
 <h3 class="center_text">Images (<%= @current_user.images.count %> saved, <%= @published_count %> published):</h3>
 
-  <div class = "center_text">
-    Create a new image:
+  <div class = "center center_text new_image teal_it">
+    <h4>Create New Image</h4>
     <form action="/images/new" method="get">
-        <button>Find/Save Image</button>
+        <button>Find Random Images</button>
+    </form>
+
+    <form action="/images" method="post">
+      <input type="text" name="image[image_url" placeholder="Your Image URL">
+      <%= token_tag %>
+      <button>Save Your Image</button>
     </form>
   </div>
 </br>
 
 
-  <% @current_user.images.each do |image| %>
-    <div class="image_box center center_text">
+  <% @current_user.images.sort {|x,y| image_score(y) <=> image_score(x)}.each do |image| %>
+    <div class="image_box center center_text teal_it margin_top">
       <img src="<%= image.image_url %>">
       <p>Published? <%= image.published %></p>
     <% if !image.published && @published_count < 5 %>
@@ -77,8 +86,8 @@
 <h3 class="center_text">Captions</h3>
 
 </br>
-<% @current_user.captions.each do |caption| %>
-  <div class="caption_box center clearfix">
+<% @current_user.captions.sort {|x,y| caption_score(y) <=> caption_score(x)}.each do |caption| %>
+  <div class="caption_box center clearfix teal_it">
 
     <div>
       <img src="<%= caption.image.image_url %>">
@@ -86,20 +95,20 @@
 
     <div class="caption_des">
       <p>Caption: "<%= caption.message %>"</p>
-      <p>Image published?: <%= caption.image.published %></p>
+      <p>Image published? <%= caption.image.published %></p>
       <p>
       Upvotes:  <%= caption.get_upvotes.size %>
       Downvotes:  <%= caption.get_downvotes.size %>
-      Score: <%= caption.get_upvotes.size - caption.get_downvotes.size %>
+      Score: <%= caption_score(caption) %>
       </p>
     </div>
 
     <div class="cap_act">
-      <form action="/images/<%= caption.image.id%>" method="  get">
+      <form action="/images/<%= caption.image.id%>" method="get">
         <button type="submit">View</button>
       </form>
 
-      <form action="/captions/<%= caption.id%>" method="post  ">
+      <form action="/captions/<%= caption.id%>" method="post">
         <input type="hidden" name="_method" value="delete">
         <%= token_tag %>
         <button type="submit">Delete</button>

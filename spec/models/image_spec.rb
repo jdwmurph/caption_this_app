@@ -1,5 +1,12 @@
 require 'spec_helper'
 
 describe Image do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'should have a user' do
+    bobby = User.create(name: 'Bobby')
+    image = Image.create(image_url: 'www.espn.com')
+    bobby.images << image
+    actual = image.user.name
+    expected = 'Bobby'
+    expect(actual).to eq expected
+  end
 end

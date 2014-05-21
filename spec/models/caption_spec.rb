@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Caption do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'should have a message' do
+    new_caption = Caption.create(message: 'hello')
+    actual = new_caption.message
+    expected = 'hello'
+  end
 end

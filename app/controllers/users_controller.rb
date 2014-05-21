@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action:current_user
-  helper_method :image_score, :user_caption_score, :user_image_score, :user_image_rank, :user_caption_rank
+  helper_method :caption_score, :image_score, :user_caption_score, :user_image_score, :user_image_rank, :user_caption_rank
   def index
     @users = User.all
   end

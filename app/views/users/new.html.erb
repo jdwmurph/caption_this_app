@@ -1,18 +1,22 @@
-Create a new user, here:
 
-<% if @user.errors.any? %>
-  <div class="errors">
-    <p class="error-count">
-      The form has <%= pluralize(@user.errors.count, "error") %>.
-    </p>
-    <ul class= "error-list">
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
+<div class="login">
+  <h1>Create a new user:</h1>
+
+  <% if @user.errors.any? %>
+    <div class="errors">
+      <p class="error-count">
+        The form has <%= pluralize(@user.errors.count,   "error") %>.
+      </p>
+      <ul class= "error-list">
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="skinny center">
+    <%= render 'form' %>
   </div>
-<% end %>
-
-<%= render 'form' %>
-
-To see a list of all user names, click <a href="/users">here</a>.
+  </br>
+  To see a list of all user names, click <a href="/users">here</a>.
+</div>

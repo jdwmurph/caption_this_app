@@ -1,20 +1,22 @@
-<h1>Does this image look like it could use a good caption?</h1>
+<div class="center_text">
+  <h1>Does this image look like it could use a good caption?</h1>
 
-<img src="<%= @image_url %>">
+  <img src="<%= @image_url %>">
 
-<h3>
-  If not, click here for another:
+  <h2 class="margin_top">
+    If not, click here for another:
+  </h2>
+    <form action="/images/new" method="get">
+        <button>Let's do this again...</button>
+    </form>
+  <h2 class="margin_top">
+    If so, click here to save it to your profile:
+  </h2>
 
-  <form action="/images/new" method="get">
-      <button>Let's do this again...</button>
-  </form>
+    <form action="/images" method="post">
+        <input type="hidden" name="image[image_url" value="<%= @image_url %>">
+        <%= token_tag %>
+        <button>Save Image</button>
+    </form>
 
-  If so, click here to save it to your profile:
-
-  <form action="/images" method="post">
-      <input type="hidden" name="image[image_url" value="<%= @image_url %>">
-      <%= token_tag %>
-      <button>Save Image</button>
-  </form>
-
-</h3>
+</div>

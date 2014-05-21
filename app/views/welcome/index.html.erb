@@ -1,21 +1,23 @@
 <div class="welcome">
     </br>
-    </br>
 
-    <h1>Can you write a better caption than this?</h1>
+    </br>
+    <h1 id="title" class="center">Caption.This</h1>
+    <h2 id="under">Read and write captions... for your own good.</h2>
 
     </br>
 
     <a href="/images/<%= @image.id%>"><img class="welcome_image" src="<%= @image.image_url %>"></a>
+    </br>
+    </br>
 
-    <h3 class="welcome_caption">"<%= @caption_top.message %>"</h3>
+    <h3 class="welcome_caption center">"<%= @caption_top.message %>"</h3>
+
     </br>
     </br>
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
+
+
+    <h3 class="center">... can you write a better caption?</h3>
     </br>
     </br>
     </br>
@@ -30,10 +32,9 @@
     </br>
     </br>
     </br>
-    </br>
 
-<div class="image_list_box">
-<% @images.each do |image| %>
+<div class="image_list_box clearfix">
+<% @images.shuffle.each do |image| %>
   <div class="image_list">
     <a href="/images/<%= image.id %>">
       <img src="<%= image.image_url %>">
@@ -42,5 +43,12 @@
 <% end %>
 </div>
 
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
 
+<h3 class="center_text">Looking for more images? Then login to your profile and create a new image!</h3>
 <div class = "clearfix"><div class="footer"></div></div>
