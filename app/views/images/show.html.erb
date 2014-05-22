@@ -1,5 +1,5 @@
 <div class="image_all">
-  <h1 class= "teal_it box_it center margin_top">Caption this!</h1>
+  <h1 class= "teal_it box_it center margin_top_cap">Caption this!</h1>
   <h5>Or click <a href="/images/<%= @next_image_id %>">here</a> to go to the next image.</h5>
   <img src="<%= @image.image_url %>">
 
@@ -33,23 +33,20 @@
       <% if @current_user%>
 
         <div class="caption_vote">
-            <div class="dotted_r">
-              By: <%= caption.user.name%>
-            </div>
+              <div class="dotted_r">
+                By: <%= caption.user.name%>
+              </div>
 
-            <div>
-              Upvotes:
-            </div>
+              <div>
+                Upvotes:
+              </div>
 
-            <div class="dotted_r zero_padding">
-              <form action="/users/<%= @current_user.id %>  /captions/<%= caption.id %>/upvote" method="post">
-
-              <%= token_tag %>
-                <button type="submit"><%= caption.get_upvotes.  size%></button>
-              </form>
-            </div>
-
-
+              <div class="dotted_r zero_padding">
+                <form action="/users/<%= @current_user.id %>/captions/<%= caption.id %>/upvote" method="post">
+                <%= token_tag %>
+                  <button type="submit"><%= caption.get_upvotes.size%></button>
+                </form>
+              </div>
 
           <div>
           Downvotes:
@@ -64,9 +61,9 @@
 
       <% else %>
 
-        By <%= caption.user.name%>
         <div class="caption_vote">
-          <div>
+          <div class="dotted_r">By <%= caption.user.name%></div>
+          <div class="dotted_r">
             Upvotes <%= caption.get_upvotes.size %>
           </div>
           <div>

@@ -82,12 +82,6 @@ nav a:visited {
   word-wrap: break-word;
 }
 
-.teal_it {
-  border: solid teal 3px;
-  border-radius: 10px;
-  padding: 10px;
-}
-
 .box_it {
   width: 400px;
 }
@@ -137,6 +131,15 @@ nav a:visited {
   margin: 10px 0;
 }
 
+.teal {
+  color: teal;
+  font-family: helvetica;
+}
+
+.helvetica {
+  font-family: helvetica;
+}
+
 .caption_input {
   border: solid black 1px;
   width: 405px;
@@ -149,6 +152,11 @@ nav a:visited {
 
 .margin_top{
   margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.margin_top_cap {
+  margin-top: 50px;
   margin-bottom: 10px;
 }
 
@@ -219,7 +227,6 @@ display: inline-block;
   margin-bottom: 5px;
   border-bottom: dotted black 1px;
   padding-bottom: 5px;
-
 }
 
 .cap_act {
@@ -253,6 +260,11 @@ display: inline-block;
   padding-left: 15px;
   padding-top: 15px;
 }
+.teal_it {
+  border: solid teal 3px;
+  border-radius: 10px;
+  padding: 10px;
+}
 
 .rules_box {
   width: 475px;
@@ -270,13 +282,16 @@ display: inline-block;
 
 .rankings {
   text-align: center;
-  border: solid teal 3px;
+  border: solid black 3px;
+  border-radius: 10px;
   margin: 50px auto;
   width: 70%;
   padding-bottom: 30px;
   padding-left: 20px;
   padding-right: 20px;
 }
+
+
 
 .rankings table {
   margin: 0 auto;

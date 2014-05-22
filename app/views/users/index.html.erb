@@ -1,5 +1,5 @@
 <div class="login">
-  <h1>Users</h1>
+  <h1 class="helvetica">Users</h1>
   <% @users.sort {|x,y| x.name <=> y.name}.each do |user| %>
     <p><%= user.name %></p>
   <% end %>

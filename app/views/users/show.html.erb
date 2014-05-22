@@ -1,6 +1,6 @@
-<h1 class="center_text"><%= @current_user.name %>'s Profile</h1>
+<h1 class="center_text helvetica"><%= @current_user.name %>'s Profile</h1>
 
-<h3 class="center_text">Rankings</h3>
+<h3 class="center_text helvetica">Rankings</h3>
 </br>
 <table class="show_table center_text teal_it">
   <thead>
@@ -25,7 +25,7 @@
 </br>
 </br>
 
-<h3 class="center_text">Images (<%= @current_user.images.count %> saved, <%= @published_count %> published):</h3>
+<h3 class="center_text helvetica">Images (<%= @current_user.images.count %> saved, <%= @published_count %> published):</h3>
 
   <div class = "center center_text new_image teal_it">
     <h4>Create New Image</h4>
@@ -83,7 +83,7 @@
 
  </br>
 
-<h3 class="center_text">Captions</h3>
+<h3 class="center_text helvetica">Captions</h3>
 
 </br>
 <% @current_user.captions.sort {|x,y| caption_score(y) <=> caption_score(x)}.each do |caption| %>
