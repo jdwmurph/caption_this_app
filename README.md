@@ -7,6 +7,8 @@ Brief Description: Caption This is an app, which functions as a competitive/soci
 Web address: http://caption-this.herokuapp.com/
 Github: https://github.com/jdwmurph/caption_this_app
 
+![alt text](caption_this.tiff "Logo Title Text 1")
+
 ##Dependencies:
   
 ####Gems:
