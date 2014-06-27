@@ -15,11 +15,11 @@
 
       <tbody>
         <% @first_ten_users.each do |user| %>
-        <tr>
-          <td><%= @first_ten_users.index(user) + 1 %></td>
-          <td  class="name dotted"><%= user.name %></td>
-          <td  class="dotted"><%= user_caption_score(user) %></td>
-        </tr>
+          <tr>
+            <td><%= @first_ten_users.index(user) + 1 %></td>
+            <td  class="name dotted"><%= user.name %></td>
+            <td  class="dotted"><%= user_caption_score(user) %></td>
+          </tr>
         <% end %>
       </tbody>
     </table>
@@ -44,11 +44,11 @@
 
       <tbody>
         <% @first_ten_users_img.each do |user| %>
-        <tr>
-          <td><%= @first_ten_users_img.index(user) + 1 %></td>
-          <td  class="name dotted"><%= user.name %></td>
-          <td  class="dotted"><%= user_image_score(user) %></td>
-        </tr>
+          <tr>
+            <td><%= @first_ten_users_img.index(user) + 1 %></td>
+            <td  class="name dotted"><%= user.name %></td>
+            <td  class="dotted"><%= user_image_score(user) %></td>
+          </tr>
         <% end %>
       </tbody>
     </table>
@@ -61,7 +61,7 @@
   <h3>(Number of upvotes minus downvotes [only on published images])</h3>
   <p>Total Caption Count (for published images): <%= @caption_count %></p>
 
-    <div class="ranking_table">
+  <div class="ranking_table">
     <table>
       <thead>
         <tr>
@@ -74,12 +74,12 @@
 
       <tbody>
         <% @top_ten_captions.each do |caption| %>
-        <tr>
-          <td><%= @top_ten_captions.index(caption) + 1 %></td>
-          <td class="name dotted"><a href="/images/<%=caption.image.id%>"><div class="caption_wrap">"<%= caption.message %>"</div></a></td>
-          <td class="dotted"><%= caption.user.name %></td>
-          <td class="dotted"><%= caption_score(caption)%></td>
-        </tr>
+          <tr>
+            <td><%= @top_ten_captions.index(caption) + 1 %></td>
+            <td class="name dotted"><a href="/images/<%=caption.image.id%>"><div class="caption_wrap">"<%= caption.message %>"</div></a></td>
+            <td class="dotted"><%= caption.user.name %></td>
+            <td class="dotted"><%= caption_score(caption)%></td>
+          </tr>
         <% end %>
       </tbody>
     </table>
@@ -92,7 +92,7 @@
   <h3>(Number of upvotes minus downvotes for all captions for the image [only including published   images])</h3>
   <p>Total Image Count (published): <%= @image_count %></p>
 
-      <div class="ranking_table">
+  <div class="ranking_table">
     <table>
       <thead>
         <tr>
@@ -105,16 +105,16 @@
 
       <tbody>
         <% @top_ten_images.each do |image| %>
-        <tr>
-          <td><%= @top_ten_images.index(image) + 1 %></td>
-          <td class="name dotted"><a href="/images/<%= image.id %>"><img src="<%= image.image_url %>" style="width: 150px;"></a></td>
-          <td class="dotted"><%= image.user.name %></td>
-          <td class="dotted"><%= image_score(image)%></td>
-        </tr>
+          <tr>
+            <td><%= @top_ten_images.index(image) + 1 %></td>
+            <td class="name dotted"><a href="/images/<%= image.id %>"><img src="<%= image.image_url %>" style="width: 150px;"></a></td>
+            <td class="dotted"><%= image.user.name %></td>
+            <td class="dotted"><%= image_score(image)%></td>
+          </tr>
         <% end %>
       </tbody>
     </table>
-</div>
+  </div>
 
 
 </div>

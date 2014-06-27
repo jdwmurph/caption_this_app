@@ -6,17 +6,17 @@
   <h2 class="margin_top">
     If not, click here for another:
   </h2>
-    <form action="/images/new" method="get">
-        <button>Let's do this again...</button>
-    </form>
+  <form action="/images/new" method="get">
+    <button>Let's do this again...</button>
+  </form>
   <h2 class="margin_top">
     If so, click here to save it to your profile:
   </h2>
 
-    <form action="/images" method="post">
-        <input type="hidden" name="image[image_url" value="<%= @image_url %>">
-        <%= token_tag %>
-        <button>Save Image</button>
-    </form>
+  <form action="/images" method="post">
+    <input type="hidden" name="image[image_url" value="<%= @image_url %>">
+    <%= token_tag %>
+    <button>Save Image</button>
+  </form>
 
 </div>

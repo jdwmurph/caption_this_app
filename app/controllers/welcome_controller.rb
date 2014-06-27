@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   before_action:current_user
+
   helper_method :user_caption_score, :user_image_score, :caption_score, :image_score
 
   def index

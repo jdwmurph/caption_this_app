@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action:current_user
+
+  # Holy helper methods Batman! Why? So many methods indicate an object is waiting to get out.
+  # We had a conversation about these, I think.
   helper_method :caption_score, :image_score, :user_caption_score, :user_image_score, :user_image_rank, :user_caption_rank
+
   def index
     @users = User.all
   end
