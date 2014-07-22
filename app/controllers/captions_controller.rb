@@ -7,6 +7,7 @@ class CaptionsController < ApplicationController
     new_caption = Caption.create(caption_params)
     @current_user.captions << new_caption
     @image = Image.find(new_caption.image)
+    binding.pry
     redirect_to image_path(@image)
   end
 
