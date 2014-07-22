@@ -27,25 +27,25 @@
 
 <h3 class="center_text helvetica">Images (<%= @current_user.images.count %> saved, <%= @published_count %> published):</h3>
 
-  <div class = "center center_text new_image teal_it">
-    <h4>Create New Image</h4>
-    <form action="/images/new" method="get">
-        <button>Find Random Images</button>
-    </form>
+<div class = "center center_text new_image teal_it">
+  <h4>Create New Image</h4>
+  <form action="/images/new" method="get">
+    <button>Find Random Images</button>
+  </form>
 
-    <form action="/images" method="post">
-      <input type="text" name="image[image_url" placeholder="Your Image URL">
-      <%= token_tag %>
-      <button>Save Your Image</button>
-    </form>
-  </div>
+  <form action="/images" method="post">
+    <input type="text" name="image[image_url" placeholder="Your Image URL">
+    <%= token_tag %>
+    <button>Save Your Image</button>
+  </form>
+</div>
 </br>
 
 
-  <% @current_user.images.sort {|x,y| image_score(y) <=> image_score(x)}.each do |image| %>
-    <div class="image_box center center_text teal_it margin_top">
-      <img src="<%= image.image_url %>">
-      <p>Published? <%= image.published %></p>
+<% @current_user.images.sort {|x,y| image_score(y) <=> image_score(x)}.each do |image| %>
+  <div class="image_box center center_text teal_it margin_top">
+    <img src="<%= image.image_url %>">
+    <p>Published? <%= image.published %></p>
     <% if !image.published && @published_count < 5 %>
       <form action="/images/<%= image.id %>/update" method="post">
         <input type="hidden" name="_method" value="put">
@@ -54,10 +54,10 @@
         <button type="submit">Publish</button>
       </form>
 
-  <!--     <form action="/images/<%= image.id %>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <%= token_tag %>
-        <button type="submit">Delete</button>
+      <!--     <form action="/images/<%= image.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <%= token_tag %>
+      <button type="submit">Delete</button>
       </form> -->
 
     <% end %>
@@ -74,14 +74,14 @@
       </form>
     <% end %>
 
-    </br>
-      Number of captions: <%= image.captions.count %>
-      Image score: <%= image_score(image) %>
-    </br>
-    </div>
-  <% end %>
+</br>
+Number of captions: <%= image.captions.count %>
+Image score: <%= image_score(image) %>
+</br>
+  </div>
+<% end %>
 
- </br>
+</br>
 
 <h3 class="center_text helvetica">Captions</h3>
 
@@ -97,9 +97,9 @@
       <p>Caption: "<%= caption.message %>"</p>
       <p>Image published? <%= caption.image.published %></p>
       <p>
-      Upvotes:  <%= caption.get_upvotes.size %>
-      Downvotes:  <%= caption.get_downvotes.size %>
-      Score: <%= caption_score(caption) %>
+        Upvotes:  <%= caption.get_upvotes.size %>
+        Downvotes:  <%= caption.get_downvotes.size %>
+        Score: <%= caption_score(caption) %>
       </p>
     </div>
 

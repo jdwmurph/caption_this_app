@@ -2,13 +2,10 @@ class CaptionsController < ApplicationController
 
   before_action:current_user
 
-
   def create
     new_caption = Caption.create(caption_params)
     @current_user.captions << new_caption
-    @image = Image.find(new_caption.image)
-    binding.pry
-    redirect_to image_path(@image)
+    redirect_to image_path(new_caption.image)
   end
 
   def upvote

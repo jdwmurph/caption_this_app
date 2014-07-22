@@ -1,16 +1,11 @@
 class ImagesController < ApplicationController
   before_action:current_user
 
-
   def new
-
+    # Consider putting this logic inside an object called "ImageFetcher" or something similar
     url = "https://api.instagram.com/v1/media/popular?access_token=#{ENV.fetch('INSTAGRAM_TOKEN')}"
     result = HTTParty.get(url)
     @image_url = result['data'][1]['images']['standard_resolution']['url']
-
-    # headers = {"Content-Type": "text", "Authorization": "Client-ID <%= ENV.fetch('IMGUR_KEY')%>"}
-    # r = requests.get("https://api.imgur.com/3/gallery/random/random/<%= 1 %>", headers=headers, verify=False)
-    # @imgur_url
   end
 
   def create
@@ -20,6 +15,10 @@ class ImagesController < ApplicationController
   end
 
   def show
+    # This all can be simplified by writing out
+    # clearly the entry and exit paths of this action, then
+    # determining how to get to each.
+    # Consider: "if image.last?", which I find more expressive.
     num = params[:id].to_i
 
     if Image.exists?(num) && Image.find(num).published == true
@@ -55,6 +54,8 @@ class ImagesController < ApplicationController
   end
 
   def caption_score(caption)
+    # calculating a caption's score is a responsibility for the caption
+    # or maybe a ScoringEngine, not the controller
     score = caption.get_upvotes.size - caption.get_downvotes.size
   end
 

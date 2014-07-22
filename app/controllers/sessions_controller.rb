@@ -1,11 +1,8 @@
 class SessionsController < ApplicationController
 
-
   def new
     #goes to login form
-
   end
-
 
   def create
     user = User.find_by(name: params[:name])

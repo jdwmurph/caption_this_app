@@ -23,25 +23,25 @@
     </br>
     </br>
     </br>
-<% if @current_user %>
-    <h3>Yes? Then click on an image to create a caption!</h3>
-<% else %>
-    <h3>Yes? Then check out the rules, rankings, and login above.... or click on an image to check out its captions!</h3>
-<% end %>
+    <% if @current_user %>
+      <h3>Yes? Then click on an image to create a caption!</h3>
+    <% else %>
+      <h3>Yes? Then check out the rules, rankings, and login above.... or click on an image to check out its captions!</h3>
+    <% end %>
 </div>
     </br>
     </br>
     </br>
 
-<div class="image_list_box clearfix">
-<% @images.shuffle.each do |image| %>
-  <div class="image_list">
-    <a href="/images/<%= image.id %>">
-      <img src="<%= image.image_url %>">
-    </a>
-  </div>
-<% end %>
-</div>
+    <div class="image_list_box clearfix">
+      <% @images.shuffle.each do |image| %>
+        <div class="image_list">
+          <a href="/images/<%= image.id %>">
+            <img src="<%= image.image_url %>">
+          </a>
+        </div>
+      <% end %>
+    </div>
 
     </br>
     </br>
@@ -50,5 +50,5 @@
     </br>
     </br>
 
-<h3 class="center_text">Looking for more images? Then login to your profile and create a new image!</h3>
-<div class = "clearfix"><div class="footer"></div></div>
+    <h3 class="center_text">Looking for more images? Then login to your profile and create a new image!</h3>
+    <div class = "clearfix"><div class="footer"></div></div>
