@@ -1,14 +1,14 @@
 <div class="login field">
-<h1 class="helvetica">Login
-</h1>
+  <h1 class="helvetica">Login
+  </h1>
 
 
-<form action="/sessions" method="post">
-  <%= token_tag %>
-  <input type="name" name="name" placeholder="Name">
-  <input type="password" name="password" placeholder="Password">
-  <input type="submit">
-</form>
+  <form action="/sessions" method="post">
+    <%= token_tag %>
+    <input type="name" name="name" placeholder="Name">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit">
+  </form>
 
-<p>If you do not have an account already, create one  <a href="/users/new">here</a>.</p>
+  <p>If you do not have an account already, create one  <a href="/users/new">here</a>.</p>
 </div>
