@@ -36,3 +36,4 @@ group :development, :test do
   gem 'pry-nav'
   gem 'rspec-rails'
 end
+ruby "2.2.0"
